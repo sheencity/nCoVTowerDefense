@@ -20,6 +20,7 @@ ABaseTower::ABaseTower()
 	MainMesh->SetupAttachment(RootComponent);
 	RangeSphere = CreateDefaultSubobject<USphereComponent>(TEXT("RangeSphere"));
 	RangeSphere->SetupAttachment(RootComponent);
+	RangeSphere->OnComponentBeginOverlap.AddDynamic(this, &ABaseTower::OnBeginOverlap);
 	GunMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("GunMesh"));
 	GunMesh->SetupAttachment(RootComponent);
 	Muzzle = CreateDefaultSubobject<USceneComponent>(TEXT("Muzzle"));
@@ -39,7 +40,7 @@ void ABaseTower::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (hasTarget) {
 		if (TargetEnemy && IsTargetInRange(TargetEnemy)) {
-			GunMesh->SetWorldRotation(FRotator(0,0,ProjectileRotation().Yaw));
+			GunMesh->SetWorldRotation(ProjectileRotation()+FRotator(0,90,0));
 		}
 		else {
 			hasTarget = false;
@@ -93,8 +94,19 @@ FRotator ABaseTower::ProjectileRotation()
 {
 	if (TargetEnemy)
 	{
-		UKismetMathLibrary::FindLookAtRotation(Muzzle->GetComponentLocation(), TargetEnemy->GetActorLocation());
+		return UKismetMathLibrary::FindLookAtRotation(GunMesh->GetComponentLocation(),FVector(TargetEnemy->GetActorLocation().X, TargetEnemy->GetActorLocation().Y, GunMesh->GetComponentLocation().Z));
 	}
 	return FRotator();
+}
+
+void ABaseTower::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (!hasTarget) {
+		TargetEnemy = Cast<ABaseEnemy>(OtherActor);
+		if (TargetEnemy) {
+			hasTarget = true;
+			RangeSphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		}
+	}
 }
 

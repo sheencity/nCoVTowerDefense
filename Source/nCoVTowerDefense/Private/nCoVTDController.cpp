@@ -26,7 +26,7 @@ void AnCoVTDController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 	InputComponent->BindAction("Place", IE_Pressed, this, &AnCoVTDController::PlaceTower);
-	InputComponent->BindAction("Place", IE_Released, this, &AnCoVTDController::PlaceTower);
+	InputComponent->BindAction("CanclePlace", IE_Pressed, this, &AnCoVTDController::CanclePlace);
 }
 
 void AnCoVTDController::PlayerTick(float DeltaSeconds)
@@ -38,14 +38,10 @@ void AnCoVTDController::PlayerTick(float DeltaSeconds)
 void AnCoVTDController::PlaceTower()
 {
 	if (!isPlacing&& PreviewTower) {
+		FVector cursorFV = PreviewTower->GetActorLocation();
 		PreviewTower->Destroy();
 		PreviewTower = nullptr;
-
-		FHitResult traceHitResult;
-		if (GetHitResultUnderCursor(ECC_Visibility, true, traceHitResult)) {
-			FVector cursorFV = FVector(traceHitResult.Location.X, traceHitResult.Location.Y,0);
-			GetWorld()->SpawnActor<ABaseTower>(TowerClass, cursorFV, FRotator::ZeroRotator);			
-		}
+		GetWorld()->SpawnActor<ABaseTower>(TowerClass, cursorFV, FRotator::ZeroRotator);			
 	}
 }
 
