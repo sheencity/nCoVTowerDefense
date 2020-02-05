@@ -21,10 +21,6 @@ protected:
 		float mSpeed = 15.0f;
 
 	virtual void SetupInputComponent() override;
-	void MoveForward(float pValue);
-	void MoveRight(float pValue);
-	void CameraZoomIn();
-	void CameraZoomOut();
 
 private:
 	class AnCovTDPawn* mCovTDPawn;

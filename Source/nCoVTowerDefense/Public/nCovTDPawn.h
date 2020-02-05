@@ -25,16 +25,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Camera")
 		class USpringArmComponent* SpringArm;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Camera")
-		class UCapsuleComponent* CapsuleComp;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Camera")
 		class USceneComponent* ViewTransform;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Camera")
 		class UCameraComponent* CameraComp;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:
-	void CameraZoomIn();
-	void CameraZoomOut();
 };
