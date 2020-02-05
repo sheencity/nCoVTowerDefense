@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "BaseTower.generated.h"
 
+class ABaseEnemy;
+
 UCLASS()
 class NCOVTOWERDEFENSE_API ABaseTower : public AActor
 {
@@ -38,5 +40,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 protected:
-	bool IsTargetInRange();
+	bool hasTarget=false;
+	UPROPERTY()
+	ABaseEnemy* TargetEnemy;
+	virtual bool IsTargetInRange(ABaseEnemy* pEnemy);
+	virtual void LookForTarget();
+	FRotator ProjectileRotation();
 };
