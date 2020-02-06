@@ -40,8 +40,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 protected:
+	UPROPERTY(BlueprintReadWrite)
 	bool hasTarget=false;
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite)
 	ABaseEnemy* TargetEnemy;
 	virtual bool IsTargetInRange(ABaseEnemy* pEnemy);
 	virtual void LookForTarget();

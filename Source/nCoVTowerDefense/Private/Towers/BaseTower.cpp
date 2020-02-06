@@ -37,21 +37,40 @@ void ABaseTower::BeginPlay()
 // Called every frame
 void ABaseTower::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime); LookForTarget();
 	if (hasTarget) {
-		if (TargetEnemy && IsTargetInRange(TargetEnemy)) {
-			GunMesh->SetWorldRotation(ProjectileRotation()+FRotator(0,90,0));
+		if (TargetEnemy ) {
+			if (IsTargetInRange(TargetEnemy))
+			{
+				GunMesh->SetWorldRotation(ProjectileRotation() + FRotator(0, 90, 0));
+			}
+			else {
+				hasTarget = false;
+			}
 		}
 		else {
 			hasTarget = false;
 			LookForTarget();
 		}
 	}
+	//else {
+	//	LookForTarget();
+	//	if (!RangeSphere->IsCollisionEnabled()) {
+	//		RangeSphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	//	}
+	//}
 }
 
 bool ABaseTower::IsTargetInRange(ABaseEnemy* pEnemy)
 {
-	return 	FVector::Distance(this->GetActorLocation(), pEnemy->GetActorLocation()) < Range;
+	if (pEnemy)
+	{
+		UE_LOG(LogTemp,Warning,TEXT("%f"), FVector::Distance(this->GetActorLocation(), pEnemy->GetActorLocation()));
+		return 	FVector::Distance(this->GetActorLocation(), pEnemy->GetActorLocation()) < Range;
+	}
+	else {
+		return false;
+	}
 }
 
 void ABaseTower::LookForTarget()
