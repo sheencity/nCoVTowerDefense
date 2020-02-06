@@ -46,6 +46,7 @@ protected:
 	ABaseEnemy* TargetEnemy;
 	virtual bool IsTargetInRange(ABaseEnemy* pEnemy);
 	virtual void LookForTarget();
+	UFUNCTION(BlueprintCallable)
 	FRotator ProjectileRotation();
 
 	UFUNCTION()
