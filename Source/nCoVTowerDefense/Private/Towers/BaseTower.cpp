@@ -105,6 +105,7 @@ void ABaseTower::LookForTarget()
 		TargetEnemy = tempTarget;
 	}
 	else {
+		TargetEnemy = nullptr;
 		RangeSphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	}
 }
