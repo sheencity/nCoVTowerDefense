@@ -1,3 +1,8 @@
+# 背景：光辉城市公益黑客松
+这是一个不一样的春天，这是一个不一样的开工日，这是一群仍然一样热爱创造的人。 在全力开工，保障客户服务的同时，我们计划在此期间，尝试做一些有意义的事。
+
+一己之力，从未渺小。
+http://www.sheencity.com/mars
 # 游戏简介
 <br/>  《肺村战疫》是一款新型冠状病毒背景下的公益塔防游戏，使用Unreal Engine4.24.2开发。希望能在这场冠状病毒战役中能让大家放松下心情。
 <br/>  肺村抵御蝙蝠病毒攻击，共9波蝙蝠从起点骷髅位置沿着地图道路抵达肺村，并进行攻击，肺村受到伤害由红色逐渐变白。玩家通过金币购买并放置炮台到地图中，炮台自动攻击到达攻击范围内的蝙蝠。当9波蝙蝠都消灭后游戏胜利。肺村完全变白游戏失败。
@@ -40,7 +45,8 @@
 ![image](https://raw.githubusercontent.com/sheencity/nCoVTowerDefense/dev/Picture/Pic01.jpg)
 ![image](https://raw.githubusercontent.com/sheencity/nCoVTowerDefense/dev/Picture/Pic02.jpg)
 ![image](https://raw.githubusercontent.com/sheencity/nCoVTowerDefense/dev/Picture/Pic03.jpg)
-
+# 贡献者
+丁良宇 王义飞
 # 寄语
 只要相信 一切终将雨过天晴 中国加油!!!
 
